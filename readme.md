@@ -9,9 +9,9 @@
 ## 使用
 
 1. 克隆
-地址：https://gitee.com/ww24kobe/vite-vue2-vueRouter-vuex-sass
+地址：https://github.com/weibuding/youtaogou.git
 ```
-git clone https://gitee.com/ww24kobe/vite-vue2-vueRouter-vuex-sass.git
+git clone https://github.com/weibuding/youtaogou.git
 ```
 > 仓库名太长，自己改名
 
