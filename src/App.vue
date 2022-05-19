@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <h3>优淘购</h3>
+        
         <!-- <router-link to="/">首页</router-link> |
         <router-link to="/about">购物车</router-link> |
         <router-link to="/test">我的</router-link> -->
@@ -58,6 +58,11 @@
                 list-style: none;
             }
         }
-   
+        *{
+            box-sizing: border-box;
+        }
+   html {
+  scroll-behavior: smooth;
+}
 </style>
 

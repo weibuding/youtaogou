@@ -1,6 +1,6 @@
 <template>
     <div>
-          <h1>这个是首页</h1>
+       
                   <router-view></router-view>
             <van-tabbar v-model="active" active-color="red">
             <van-tabbar-item icon="home-o" to="/home/index">首页</van-tabbar-item>
