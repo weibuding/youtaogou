@@ -6,7 +6,8 @@ import User from '../views/User.vue'
 import About from '../views/About.vue'
 import Homepage from '../views/Homepage.vue'
 import Goods from '../views/Goods.vue'
-
+import NProgress from 'nprogress'
+import Goodsintro from '../views/Goodsintro.vue'
 // 注册路由插件
 Vue.use(VueRouter)
 
@@ -52,7 +53,15 @@ const routes = [{
         path: "/user",
         component: User,
         meta: {
-            title: "用户的商品订单详情"
+            title: "新闻列表"
+        }
+    },
+    {
+        path: "/goodsintro/:id",
+        component: Goodsintro,
+        props:true,
+        meta: {
+            title: "商品详情"
         }
     },
    
@@ -60,6 +69,21 @@ const routes = [{
 
 const router = new VueRouter({
     routes
+})
+
+NProgress.configure({
+    showSpinner:false,
+})
+
+router.beforeEach((to,from,next)=>{
+    console.log('beforEach');
+    NProgress.start()
+    next()
+})
+
+router.afterEach((to,from)=>{
+    NProgress.done()
+   console.log('afterEach');
 })
 
 export default router

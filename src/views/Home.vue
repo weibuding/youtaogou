@@ -15,7 +15,7 @@
     <!-- 宫格 -->
     <div class="cell">
       <van-grid square clickable border>
-        <van-grid-item v-for="item in phione" :key="item.img">
+        <van-grid-item v-for="item in phione" :key="item.img" :to="item.to">
           <div class="item">
             <img :src="item.img" />
             <div class="text">{{ item.text }}</div>
@@ -31,17 +31,18 @@
     <!-- <router-link to="/goods">购物车</router-link> 
         <router-link to="/user">我的</router-link> -->
     <div class="shop">
-        <div class="cell" v-for="items in shopps" :key="items.id">
-            <div class="imgs" >
+        <!-- <div class="cell" > -->
+            <!-- <div class="imgs" >
                 <img :src="items.img_url" alt="">
             </div>
             <div class="goods">{{items.title}}</div>
             <div class="money">
                 <span class="much">&yen;{{items.sell_price}}</span>
                  <span class="long">{{items.buy}}购买</span>
-            </div>
-        </div>
-      
+            </div> -->
+            <Goods v-for="items in shopps" :key="items.id" :data="items" @click="handel" />
+        <!-- </div> -->
+
     </div>
     <Top></Top>
   </div>
@@ -60,6 +61,7 @@ import phone6 from "../assets/images/6.png";
 import phone7 from "../assets/images/7.png";
 import morePng from "../assets/images/more.png";
 import Top from "../compent/Top.vue"
+import Goods from "../compent/Shopping.vue"
 Vue.use(Lazyload);
 export default {
   data() {
@@ -67,14 +69,14 @@ export default {
       images: [],
       shopps:[],
       phione: [
-        { text: "优淘购超市", img: phone1 },
-        { text: "数码家电", img: phone2 },
-        { text: "果蔬生鲜", img: phone3 },
-        { text: "生活缴费", img: phone4 },
-        { text: "会员中心", img: phone5 },
-        { text: "领百万现金", img: phone6 },
-        { text: "领优惠券", img: phone7 },
-        { text: "优淘购更多", img: morePng },
+        { text: "优淘超市", img: phone1,to:"/goods" },
+        { text: "数码家电", img: phone2,to:"/goods" },
+        { text: "果蔬生鲜", img: phone3,to:"/goods"},
+        { text: "生活缴费", img: phone4,to:"/goods"},
+        { text: "会员中心", img: phone5,to:"/goods" },
+        { text: "领百万现金", img: phone6 ,to:"/goods"},
+        { text: "领优惠券", img: phone7,to:"/goods" },
+        { text: "优淘新闻", img: morePng,to:"/user" },
       ],
       value: "",
     };
@@ -83,7 +85,12 @@ export default {
     this.lunbos();
     this.shops();
   },
-  methods: {
+  methods: { 
+      handel({data}){
+       console.log({data});
+            // 跳转到商品详情页
+            this.$router.push(`/goodsintro/${data.id}`)
+        },
     async lunbos() {
       this.$toast.loading({
         duration: 0,
@@ -95,13 +102,15 @@ export default {
       console.log(this.images);
     },
     async shops(){
-        let {message} = await shopping(1,8);
+        let {message} = await shopping(1,12);
         this.shopps = message
         console.log(this.shopps);
     }
   },
+  
+    
   components:{
-      Top
+      Top,Goods
   }
 };
 </script>
@@ -162,7 +171,7 @@ img {
     justify-content: space-around;
     flex-wrap: wrap;
     align-items: center;
-     padding-bottom: 35px;
+     padding-bottom: 9px;   
     .cell{
         margin-top: 2px;
         width: 180px;
