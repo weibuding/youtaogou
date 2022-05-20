@@ -65,7 +65,7 @@ export default {
             const result = await Goodslist(this.page, this.pagesize);
             this.loading = false; 
             this.lists = [...this.lists,...result.message];
-            console.log(this.lists);
+            // console.log(this.lists);
             if (result.message.length === 0) {
                 this.finished = true; 
             }

@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div class="goods">
   
     <div class="details" @click="observeImage">
 
@@ -17,8 +17,8 @@
     <div class="details">
 
       <div class="price">
-  <span>&yen; {{ info.sell_price }}</span>
-        <span>&yen; {{ info.market_price }}</span> 
+  <span class="much">&yen; {{ info.sell_price }}</span>
+        <span class="price">&yen; {{ info.market_price }}</span> 
       </div>
 
       <div> {{ info.title }} </div>
@@ -28,7 +28,7 @@
     <div class="details-content">
 
       <van-divider
-        :style="{ color: '#1989fa', borderColor: '#1989fa', padding: '0 16px' }"
+        :style="{ color: '#1989fa', borderColor: 'red', padding: '0 16px' }"
       >
   介绍 
       </van-divider>
@@ -63,11 +63,13 @@ export default {
   methods: {
     async _fetchconent() {
       let { message } = await fetchconent(this.id);
-      this.conent = message; // console.log(this.conent);
+      this.conent = message; 
+      console.log(this.conent);
     },
     async _fetchinfo() {
       let { message } = await fetchinfo(this.id);
       this.info = message;
+      console.log(this.info);
     },
     observeImage() {
       let imgs = this.conent.map((item) => item.src);
@@ -81,15 +83,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.goods{
+    height: 100%;
+    background: rgb(247, 246, 246);
+    
+}
 .details {
+    
 border-radius: 6px;
-margin-bottom: 8px;
+margin-top: 8px;
 background: #fff;
-padding: 8px;
 
+// .van-swipe{
+//      margin-top: 10px;
+// }
 .is-swipe {
-margin-top: 20px;
+margin: 10px auto;
  .van-swipe-item {
+     margin-top: 10px;
 height: 240px;
 text-align: center;
  img {
@@ -99,9 +110,27 @@ height: 100%;
  }
 }
 }
+.details-content{
+    background: white;
+}
+
+.content{
+    color: rgb(102, 126, 181);
+}
 
 .price{
-display: flex;
-justify-content: space-between;
+    // width: 90px;
+    display: flex;
+    // justify-content:;
+.much{
+   font-size: 22px;
+    color: rgb(243, 65, 65);
+}
+.price{
+    font-size: 13px;
+    margin-left: 20px;
+    margin-top: 10px;
+    color: #ccc;
+}
 }
 </style>

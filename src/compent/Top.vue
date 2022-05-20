@@ -12,7 +12,7 @@
         props:{
             top:{
                 type:Number,
-                default:200
+                default:50
             }
         },
         data(){

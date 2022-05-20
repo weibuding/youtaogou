@@ -99,12 +99,12 @@ export default {
       });
       let data = await lunbo();
       this.images = data.message;
-      console.log(this.images);
+    //   console.log(this.images);
     },
     async shops(){
         let {message} = await shopping(1,12);
         this.shopps = message
-        console.log(this.shopps);
+        // console.log(this.shopps);
     }
   },
   
